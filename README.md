@@ -33,21 +33,20 @@ The system provides DAC-based analog waveform output, SerLCD visualization via S
 
 ## Architecture
 
-### Sensor Layer
-- AK9723AJ NDIR CO₂ sensor
-- I²C (TWI) master communication
-- Register-level configuration and calibration control
+## AK9723AJ NDIR CO₂ Sensor Layer
+- I²C (TWI) master communication  
+- Register-level configuration and calibration control  
 
-### Processing Core
-- AVR128DB48 microcontroller (real-time deterministic execution)
-- CO₂ voltage measurement from sensor data
+## AVR128DB48 Processing Core
+- Real-time deterministic execution
+- CO₂ measurement and conversion from sensor data
 - FSM-based USART command parsing (interrupt-driven input handling)
-- System state management and error handling logic
+- System state management and error handling logic  
 
-### Output Layer
-- DAC: analog respiratory waveform reconstruction from processed CO₂ signal
-- SerLCD (SPI): real-time multi-page display output for system visualization
-- USART telemetry channel for runtime diagnostics and control feedback
+## DAC + SerLCD Output Layer
+- DAC: analog respiratory waveform reconstruction from processed CO₂ signal  
+- SerLCD (SPI): real-time multi-page display output for system visualization  
+- USART telemetry channel for runtime diagnostics and control feedback  
 
 ---
 
