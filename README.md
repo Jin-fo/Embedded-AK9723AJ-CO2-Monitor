@@ -40,7 +40,7 @@ The system provides DAC-based analog waveform output, SerLCD visualization via S
 
 ### Processing Core
 - AVR128DB48 microcontroller (real-time deterministic execution)
-- CO₂ ppm computation pipeline from sensor data
+- CO₂ voltage measurement from sensor data
 - FSM-based USART command parsing (interrupt-driven input handling)
 - System state management and error handling logic
 
@@ -66,7 +66,7 @@ The system provides DAC-based analog waveform output, SerLCD visualization via S
 |---|---|
 | **I²C (TWI)** | Sensor acquisition + calibration control |
 | **SPI0** | SerLCD display updates |
-| **USART (115200)** | Command-line interface + diagnostics |
+| **USART (115200)** | Command-line interface |
 | **DAC** | Analog CO₂ waveform output |
 
 ---
