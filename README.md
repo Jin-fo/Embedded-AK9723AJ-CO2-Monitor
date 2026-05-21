@@ -5,19 +5,24 @@
 ---
 
 <div align="center">
-
+**AVR128DB48 | NDIR CO₂ Sensor | Real-Time Capnography | Multi-Protocol Interface**
+  
 [![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)](https://en.wikipedia.org/wiki/C_(programming_language))
 [![AVR](https://img.shields.io/badge/AVR-00979D?style=for-the-badge&logo=arduino&logoColor=white)](https://www.microchip.com/en-us/products/microcontrollers-and-microprocessors/8-bit-mcus/avr-mcus)
 [![I2C](https://img.shields.io/badge/I2C-0078D4?style=for-the-badge&logo=serial&logoColor=white)](https://en.wikipedia.org/wiki/I%C2%B2C)
 [![SPI](https://img.shields.io/badge/SPI-FF6B6B?style=for-the-badge&logo=serial&logoColor=white)](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface)
 
-**AVR128DB48 | NDIR CO₂ Sensor | Real-Time Capnography | Multi-Protocol Interface**
-[![Platform](https://img.shields.io/badge/platform-AVR128DB48-blue)]()
-[![TWI](https://img.shields.io/badge/TWI-I2C-orange)]()
-[![SPI](https://img.shields.io/badge/SPI-display%20interface-blue)]()
-[![USART](https://img.shields.io/badge/USART-115200%20baud-green)]()
-[![DAC](https://img.shields.io/badge/DAC-analog%20output-purple)]()
-[![Application](https://img.shields.io/badge/application-Medical%20CO₂-red)]()
+[![Platform](https://img.shields.io/badge/platform-AVR128DB48-00979D?style=for-the-badge&logo=microchip&logoColor=white)](https://www.microchip.com/en-us/products/microcontrollers-and-microprocessors/8-bit-mcus/avr-mcus)
+
+[![TWI](https://img.shields.io/badge/TWI-I2C-0078D4?style=for-the-badge&logo=serial&logoColor=white)](https://en.wikipedia.org/wiki/I%C2%B2C)
+
+[![SPI](https://img.shields.io/badge/SPI-display%20interface-FF6B6B?style=for-the-badge&logo=serial&logoColor=white)](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface)
+
+[![USART](https://img.shields.io/badge/USART-115200%20baud-2E8B57?style=for-the-badge&logo=serial&logoColor=white)](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter)
+
+[![DAC](https://img.shields.io/badge/DAC-analog%20output-8A2BE2?style=for-the-badge)](https://en.wikipedia.org/wiki/Digital-to-analog_converter)
+
+[![Application](https://img.shields.io/badge/application-Medical%20CO%E2%82%82-DC143C?style=for-the-badge)]()
 ---
 
 **Version 1.0 | Last Updated: May 2026 | Author: Jin Yuan Chen**
