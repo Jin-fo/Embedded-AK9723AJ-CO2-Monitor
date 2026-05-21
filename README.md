@@ -1,11 +1,12 @@
 # AK9723 Medical CO₂ Breathing Monitor
 
 **AVR128DB48 | NDIR CO₂ Sensor | Real-Time Capnography | Multi-Protocol Interface**
-
 [![Platform](https://img.shields.io/badge/platform-AVR128DB48-blue)]()
-[![Protocols](https://img.shields.io/badge/TWI-SPI--USART-green)]()
-[![Medical](https://img.shields.io/badge/application-Medical%20CO₂-red)]()
-
+[![TWI](https://img.shields.io/badge/TWI-I2C-orange)]()
+[![SPI](https://img.shields.io/badge/SPI-display%20interface-blue)]()
+[![USART](https://img.shields.io/badge/USART-115200%20baud-green)]()
+[![DAC](https://img.shields.io/badge/DAC-analog%20output-purple)]()
+[![Application](https://img.shields.io/badge/application-Medical%20CO₂-red)]()
 ---
 
 ## 📋 Table of Contents
