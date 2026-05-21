@@ -47,6 +47,8 @@ An **AK9723 Medical CO₂ Breathing Monitor** is a embedded platform designed fo
 - **Display optimization** – Optional SerLCD disable mode to improve DAC waveform stability and reduce signal jitter  
 - **Status indication** – Single GPIO LED used for boot indication and runtime error signaling via `get_AK9723_stats()`
 
+**Medical Application:** Real-time CO₂-based respiratory monitoring system aimed at capnography-style waveform assessment for ICU, ventilator, anesthesia, and emergency use cases.
+
 **Interfaces Summary:**
 
 | Interface | Peripheral | Role |
@@ -55,9 +57,6 @@ An **AK9723 Medical CO₂ Breathing Monitor** is a embedded platform designed fo
 | **SPI0** | Master | SerLCD display control with 400ms stabilization delay |
 | **USART** | 115200 baud | Terminal command interface, interrupt-driven ASCII reception |
 | **DAC** | Analog output | CO₂ waveform visualization for medical monitoring |
-
-**Medical Application:** Real-time CO₂-based respiratory monitoring system aimed at capnography-style waveform assessment for ICU, ventilator, anesthesia, and emergency use cases.
-
 
 <insert executive_summary_diagram_here>
 
