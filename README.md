@@ -22,33 +22,43 @@
 <p align="center">
   <img src="docs/images/system_block_diagram.png" alt="System Block Diagram" style="max-width:100%; height:auto;"/>
 </p>
+<p align="center">
+  <em>Figure 1: System block diagram of the AVR128DB48–AK9723AJ embedded CO₂ monitoring pipeline, illustrating sensor acquisition, real-time processing, and dual-mode output (DAC waveform + SerLCD/UART visualization).</em>
+</p>
 
-Real-time embedded platform for **CO₂-based respiratory monitoring (capnography-style waveform generation)**.
+Embedded real-time CO₂ monitoring system for respiratory waveform (capnography-style) generation. The system uses an AK9723AJ NDIR CO₂ sensor with AVR128DB48 firmware to implement a deterministic acquisition and processing pipeline. Sensor data is read via I²C (TWI), converted to CO₂ concentration (ppm), and distributed to multiple outputs.
 
-The system processes NDIR sensor data and produces both **digital visualization (LCD/UART)** and **analog waveform output (DAC)**.
+The system provides DAC-based analog waveform output, SerLCD visualization via SPI, and USART (115200 baud) terminal control using an interrupt-driven FSM for configuration and calibration. It supports runtime system management and displays CO₂ values in both digital (LCD/UART) and analog (waveform) forms.
+---
+
+## Architecture
+
+### Sensor Layer
+- AK9723AJ NDIR CO₂ sensor
+- I²C (TWI) master communication
+- Register-level configuration and calibration control
+
+### Processing Core
+- AVR128DB48 microcontroller (real-time deterministic execution)
+- CO₂ ppm computation pipeline from sensor data
+- FSM-based USART command parsing (interrupt-driven input handling)
+- System state management and error handling logic
+
+### Output Layer
+- DAC: analog respiratory waveform reconstruction from processed CO₂ signal
+- SerLCD (SPI): real-time multi-page display output for system visualization
+- USART telemetry channel for runtime diagnostics and control feedback
 
 ---
 
-## Core Functionality
+## Key Features
 
-- CO₂ concentration measurement (NDIR AK9723AJ via I²C)
-- Real-time ppm computation on AVR128DB48
-- Respiratory waveform reconstruction via DAC output
-- USART terminal interface (115200 baud, interrupt-driven FSM parser)
-- SerLCD display output via SPI
-
----
-
-## System Architecture
-
-| Layer | Implementation |
-|------|----------------|
-| **Sensor Interface** | AK9723AJ NDIR CO₂ sensor via I²C (TWI) |
-| **Processing Core** | AVR128DB48: signal processing + FSM control logic |
-| **Output System** | DAC waveform + SerLCD visualization |
-| **User Interface** | USART CLI (interrupt-driven command parser) |
-
----
+- Real-time CO₂ concentration computation from NDIR sensor input
+- Dual-domain output: digital display + analog waveform generation
+- FSM-based UART terminal interface (115200 baud, interrupt-driven)
+- Multi-protocol embedded integration (I²C, SPI, UART, DAC)
+- Runtime calibration and sensor configuration via terminal commands
+- GPIO-based status indication (boot state and fault signaling)
 
 ## Communication Interfaces
 
