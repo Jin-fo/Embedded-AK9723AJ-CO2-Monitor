@@ -60,6 +60,73 @@ An **AK9723 Medical CO₂ Breathing Monitor** is a embedded platform designed fo
 
 <insert executive_summary_diagram_here>
 
++-----------------------------------------------------------------------------------+
+|                                                                                   |
+|  +---------------------------+     +-----------------------------------------+    |
+|  |     AK9723AJ CO₂ Sensor   |     |           TERMINAL (PC)                 |    |
+|  |                           |     |    ASCII Commands @ 115200 baud         |    |
+|  |  +---------------------+  |     |    '0' '1' '2' 'T' 'C'                  |    |
+|  |  | Onboard ADC         |  |     +-------------------|---------------------+    |
+|  |  | (Voltage Output)    |  |                         |                          |
+|  |  +----------|----------+  |                         | USART2                   |
+|  |  +----------v----------+  |                         v (interrupt)             |
+|  |  | NDIR Measurement    |  |   +-----------------------------------------+    |
+|  |  +---------------------+  |   |            AVR128DB48                    |    |
+|  |  +---------------------+  |   |                                         |    |
+|  |  | Command Register    |<---|-->+---------+    +-------------------+    |    |
+|  |  +---------------------+  |   | |   TWI   |    |  FSM Command       |    |    |
+|  |  +---------------------+  |   | | Master  |    |  Parser (ASCII)    |<---|----+
+|  |  | Status Register     |----|--|-->|(I²C)    |    +---------|---------+    |
+|  |  +---------------------+  |   | +----|----+              |              |
+|  +------------|-------------+   |      |                    |              |
+|               |                 |      v                    v              |
+|               | TWI              |  +-----------+     +-----------+        |
+|               | (Bidirectional)  |  | Voltage→  |     |  USART2   |        |
+|               |                 |  | ppm Conv  |     | 115200    |        |
+|               |                 |  +-----|-----+     +-----------+        |
+|               |                 |        |                                 |
+|               |                 |        v                                 |
+|               |                 |  +-----+-----+                           |
+|               |                 |  | SPI0      |   +-------------------+   |
+|               |                 |  | Master    |-->| 20×4 SerLCD       |   |
+|               |                 |  | 400ms     |   | CO₂ as Float      |   |
+|               |                 |  +-----------+   +-------------------+   |
+|               |                 |        |                                   |
+|               |                 |        v                                   |
+|               |                 |  +-----------+   +-------------------+   |
+|               |                 |  | DAC0      |-->| Medical Monitor   |   |
+|               |                 |  | Analog    |   | (Waveform Output) |   |
+|               |                 |  +-----------+   +-------------------+   |
+|               |                 |                                           |
+|               |                 |  +-----------+                           |
+|               |                 |  | LED (PIN7)|                           |
+|               |                 |  | Boot/Error|                           |
+|               |                 |  +-----------+                           |
+|               |                 +-----------------------------------------+    |
+|               |                                                               |
+|               v                                                               |
+|  +---------------------------+                                               |
+|  | Status Error Bits          |                                               |
+|  | get_AK9723_stats()         |-----------------------------------------------+
+|  +---------------------------+
+|
++-----------------------------------------------------------------------------------+
+
+                                    LEGEND
+    =================================================================================
+    -->  Digital Data Flow (TWI, SPI, USART)
+    ..>  Control/Status Flow
+    <--> Bidirectional Communication (TWI)
+
+    Key Interfaces:
+    +------------------+----------------------------------------------------------+
+    | TWI (I²C)        | Bidirectional sensor communication, register access      |
+    | SPI0             | SerLCD display with 400ms stabilization delay           |
+    | USART2           | 115200 baud, interrupt-driven, ASCII commands           |
+    | DAC0             | Analog waveform output for medical monitoring           |
+    | LED (PORTA PIN7) | Boot indicator + error notification from sensor status  |
+    +------------------+----------------------------------------------------------+
+
 *Figure 1: Executive summary – complete system block diagram showing AVR128DB48, AK9723AJ sensor, SerLCD display, DAC waveform output, and USART terminal interface*
 
 ---
