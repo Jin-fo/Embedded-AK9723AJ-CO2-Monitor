@@ -1,76 +1,66 @@
-# Temperature Sensor System using AVR128DB48
+# AVR128DB48 - AK9723AJ CO₂ Medical Monitoring System
 
-## Overview
-This project is a **collection of temperature sensing examples** for the **AVR128DB48 microcontroller**, demonstrating how to interface with different sensors using **USART, SPI, and I²C communication protocols**.
+**Real-time CO₂ detection with bidirectional TWI communication, SPI display with 400ms stabilization delay, USART115200 interrupt-driven terminal with FSM command parsing, and DAC analog waveform output for patient breathing monitoring**
 
-The system includes three implementations:
-
-- **USART + ADC (AVR Assembly)** with **MCP9700A**  
-- **SPI (C/C++)** with **LM74**  
-- **I²C (C/C++)** with **LM75**
-
-Each module operates independently and highlights **low-level embedded techniques**, including **direct register configuration, peripheral control, and mixed-language development (AVR assembly and C/C++)**. Temperature readings from all modules are displayed in real time on a **20×4 SerLCD**, providing a clear serial interface for monitoring sensor output.
-
-Together, this collection demonstrates **high-speed temperature acquisition, sensor interfacing, and serial display output** across multiple communication protocols on the AVR128DB48.
-
+<div align="center">
+  
+[![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c&logoColor=white)](https://en.wikipedia.org/wiki/C++_(programming_language))
+[![AVR](https://img.shields.io/badge/AVR-00979D?style=for-the-badge&logo=arduino&logoColor=white)](https://www.microchip.com/en-us/products/microcontrollers-and-microprocessors/8-bit-mcus/avr-mcus)
+[![I2C](https://img.shields.io/badge/I2C-0078D4?style=for-the-badge&logo=serial&logoColor=white)](https://en.wikipedia.org/wiki/I%C2%B2C)
+[![SPI](https://img.shields.io/badge/SPI-FF6B6B?style=for-the-badge&logo=serial&logoColor=white)](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface)
+[![UART](https://img.shields.io/badge/UART-115200%20baud-00A86B?style=for-the-badge)](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter)
+[![DAC](https://img.shields.io/badge/DAC-analog%20output-8A2BE2?style=for-the-badge)](https://en.wikipedia.org/wiki/Digital-to-analog_converter)
+[![Capnography](https://img.shields.io/badge/Capnography-CO₂%20waveform-red?style=for-the-badge)](https://en.wikipedia.org/wiki/Capnography)
 ---
-![](Micro-controller.png)
 
-## USART Temperature Sensor (AVR Assembly)
+**Version 1.0 | Last Updated: May 2026 | Author: Jin Yuan Chen**
 
-This implementation reads temperature from an **MCP9700A analog temperature sensor** using the **on-board ADC** of the AVR128DB48. The firmware is written entirely in **AVR assembly** to demonstrate low-level hardware control and the potential for **high-speed interrupt-driven implementations**.
-
-### Operation
-1. The **MCP9700A** outputs an analog voltage proportional to temperature.
-2. The **AVR ADC module** samples this voltage and converts it into a digital value.
-3. The converted temperature data is transmitted using the **USART peripheral**.
-4. The temperature reading is displayed on the **20×4 SerLCD**.
-
-### Key Features
-- Pure **AVR assembly implementation**
-- Direct **ADC register configuration**
-- **USART serial communication**
-- Real-time temperature display on **20×4 SerLCD**
-- Demonstrates **analog sensor integration**
+</div>
 
 ---
 
-## SPI Temperature Sensor (C Implementation)
+## Table of Contents
 
-This module interfaces with an **LM74 digital temperature sensor** using the **SPI hardware module** of the AVR128DB48.
-
-The firmware is written in **C/C++** and uses the microcontroller as an **SPI master** to retrieve temperature data from the LM74 sensor.
-
-### Operation
-1. The AVR128DB48 initializes the **SPI peripheral in master mode**.
-2. A read transaction is initiated with the **LM74 sensor**.
-3. The sensor returns the current temperature as a digital value.
-4. The microcontroller processes the received data and displays the result on the **20×4 SerLCD**.
-
-### Key Features
-- **Hardware SPI communication**
-- **Master–slave sensor interface**
-- Efficient **digital temperature acquisition**
-- Implemented in **embedded C/C++**
-- Temperature output displayed on **20×4 SerLCD**
+- [Executive Summary](#executive-summary)
+- [System Overview](#system-overview)
+- [Hardware Architecture](#hardware-architecture)
+- [Communication Interfaces](#communication-interfaces-twi--spi--usart--dac)
+- [AK9723AJ CO₂ Sensor Operation](#ak9723aj-co₂-sensor-operation)
+- [Real-Time Data Acquisition & Processing](#real-time-data-acquisition--processing)
+- [USART Terminal Control (FSM)](#fsm-based-usart-terminal-control)
+- [DAC Waveform Output](#medical-co₂-waveform-output-dac)
+- [SerLCD Display System](#display-system-serlcd-spi0)
+- [System Optimization](#system-optimization--stability-behavior)
+- [Error Handling](#error-handling--status-indication)
 
 ---
 
-## I²C Temperature Sensor (C Implementation)
+## Executive Summary
 
-This implementation communicates with an **LM75 temperature sensor** using the **I²C (TWI) peripheral** of the AVR128DB48.
+**System Definition:** An AVR128DB48-based real-time CO₂ monitoring system interfaced with the AK9723AJ NDIR CO₂ sensor via bidirectional TWI (I²C) communication protocol.
 
-The structure is similar to the SPI module but uses the **I²C protocol** to read temperature registers from the sensor.
+**Medical Application Context:** Real-time patient breathing monitoring system supporting capnography-style respiratory assessment through CO₂ waveform visualization.
 
-### Operation
-1. The AVR initializes the **I²C (TWI) hardware module**.
-2. The microcontroller sends a **read request to the LM75 sensor**.
-3. The sensor returns temperature data stored in its internal registers.
-4. The AVR reads and processes the data before displaying it on the **20×4 SerLCD**.
+## Core Outputs
 
-### Key Features
-- **I²C/TWI hardware interface**
-- Communication with **LM75 digital temperature sensor**
-- **Register-based temperature readout**
-- Implemented in **embedded C/C++**
-- Temperature output displayed on **20×4 SerLCD**
+- **CO₂ measurement display** – Real-time sensor output derived from digitized voltage levels, converted to CO₂ ppm and shown as floating-point values on 20×4 SerLCD  
+- **Analog waveform (DAC)** – DAC-based analog reconstruction of sensor voltage for respiratory waveform visualization  
+- **Terminal control (USART FSM)** – Interrupt-driven USART (115200 baud) interface using ASCII commands with FSM-based parsing for AK9723AJ configuration and calibration register control  
+- **Multi-page SerLCD output (SPI0)** – Multi-page display system with ~400 ms update delay  
+- **Display optimization** – Optional SerLCD disable mode to improve DAC waveform stability and reduce signal jitter  
+- **Status indication** – Single GPIO LED used for boot indication and runtime error signaling via `get_AK9723_stats()`  
+
+**Key Interfaces Summary:**
+
+| Interface | Peripheral | Role |
+|-----------|------------|------|
+| **TWI (I²C)** | Bidirectional | AK9723AJ sensor communication, command register access, calibration |
+| **SPI0** | Master | SerLCD display control with 400ms stabilization delay |
+| **USART** | 115200 baud | Terminal command interface, interrupt-driven ASCII reception |
+| **DAC** | Analog output | CO₂ waveform visualization for medical monitoring |
+
+<insert executive_summary_diagram_here>
+
+*Figure 1: Executive summary – complete system block diagram showing AVR128DB48, AK9723AJ sensor, SerLCD display, DAC waveform output, and USART terminal interface*
+
+---
