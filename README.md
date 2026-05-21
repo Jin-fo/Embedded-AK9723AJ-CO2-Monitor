@@ -25,7 +25,7 @@
 
 **System Definition:** An AVR128DB48-based real-time CO₂ monitoring system interfaced with the AK9723AJ NDIR CO₂ sensor via bidirectional TWI (I²C) communication protocol.
 
-**Medical Application Context:** Designed for patient breathing monitoring applications, including capnography-style respiratory assessment and end-tidal CO₂ (EtCO₂) waveform analysis.
+**Medical Application Context:** Designed for patient breathing monitoring applications, including capnography-style respiratory assessment via CO₂ waveform display.
 
 **Core Outputs:**
 - **CO₂ ppm display** – Real-time concentration shown as floating-point values on 20×4 SerLCD
