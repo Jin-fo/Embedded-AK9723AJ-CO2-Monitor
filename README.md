@@ -5,7 +5,6 @@
 [![Platform](https://img.shields.io/badge/platform-AVR128DB48-blue)]()
 [![Protocols](https://img.shields.io/badge/TWI-SPI--USART-green)]()
 [![Medical](https://img.shields.io/badge/application-Medical%20CO₂-red)]()
-[![Language](https://img.shields.io/badge/C-64.4%25-brightgreen)]()
 
 ---
 
