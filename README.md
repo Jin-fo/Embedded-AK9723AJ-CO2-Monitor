@@ -27,10 +27,14 @@
 
 **Medical Application Context:** Real-time patient breathing monitoring system supporting capnography-style respiratory assessment through CO₂ waveform visualization.
 
-**Core Outputs:**
-- **CO₂ ppm display** – Real-time concentration shown as floating-point values on 20×4 SerLCD
-- **Analog waveform (DAC)** – Mimics medical CO₂ display waveform for patient breathing visualization
-- **Terminal control (USART FSM)** – ASCII command interface at 115200 baud with interrupt-driven Finite State Machine parsing
+## Core Outputs
+
+- **CO₂ measurement display** – Real-time sensor output derived from digitized voltage levels, converted to CO₂ ppm and shown as floating-point values on 20×4 SerLCD  
+- **Analog waveform (DAC)** – DAC-based analog reconstruction of sensor voltage for respiratory waveform visualization  
+- **Terminal control (USART FSM)** – Interrupt-driven USART (115200 baud) interface using ASCII commands with FSM-based parsing for AK9723AJ configuration and calibration register control  
+- **Multi-page SerLCD output (SPI0)** – Multi-page display system with ~400 ms update delay  
+- **Display optimization** – Optional SerLCD disable mode to improve DAC waveform stability and reduce signal jitter  
+- **Status indication** – Single GPIO LED used for boot indication and runtime error signaling via `get_AK9723_stats()`  
 
 **Key Interfaces Summary:**
 
