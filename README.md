@@ -25,7 +25,7 @@
 
 ## System Overview
 
-Embedded real-time CO₂ monitoring system for respiratory waveform (capnography-style) generation. The system uses an AK9723AJ NDIR CO₂ sensor with AVR128DB48 firmware to implement a deterministic acquisition and processing pipeline. Sensor data is read via I²C (TWI), converted to CO₂ concentration (ppm), and distributed to multiple outputs.
+Embedded real-time CO₂ monitoring system for respiratory waveform (capnography-style) generation. The system uses an AK9723AJ NDIR CO₂ sensor with AVR128DB48 firmware to implement a deterministic acquisition and processing pipeline. Sensor data is read via I²C (TWI), converted to digitalized CO₂ voltage measurement, and distributed to multiple outputs.
 
 The system provides DAC-based analog waveform output, SerLCD visualization via SPI, and USART (115200 baud) terminal control using an interrupt-driven FSM for configuration and calibration. It supports runtime system management and displays CO₂ values in both digital (LCD/UART) and analog (waveform) forms.
 
