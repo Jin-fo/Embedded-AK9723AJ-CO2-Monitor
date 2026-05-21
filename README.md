@@ -1,39 +1,44 @@
-# AK9723 Medical CO₂ Breathing Monitor
+# AVR128DB48 - AK9723AJ CO₂ Medical Monitoring System
 
-**AVR128DB48 | NDIR CO₂ Sensor | Real-Time Capnography | Multi-Protocol Interface**
-[![Platform](https://img.shields.io/badge/platform-AVR128DB48-blue)]()
-[![TWI](https://img.shields.io/badge/TWI-I2C-orange)]()
-[![SPI](https://img.shields.io/badge/SPI-display%20interface-blue)]()
-[![USART](https://img.shields.io/badge/USART-115200%20baud-green)]()
-[![DAC](https://img.shields.io/badge/DAC-analog%20output-purple)]()
-[![Application](https://img.shields.io/badge/application-Medical%20CO₂-red)]()
----
-
-## 📋 Table of Contents
-
-- [Executive Summary](#executive-summary)
-- [System Overview](#system-overview)
-- [Hardware Architecture](#hardware-architecture)
-- [Communication Interfaces (TWI / SPI / USART / DAC)](#communication-interfaces-twi--spi--usart--dac)
-- [AK9723AJ CO₂ Sensor Operation](#ak9723aj-co₂-sensor-operation)
-- [Real-Time Data Acquisition & Processing](#real-time-data-acquisition--processing)
-- [FSM-Based USART Terminal Control](#fsm-based-usart-terminal-control)
-- [Medical CO₂ Waveform Output (DAC)](#medical-co₂-waveform-output-dac)
-- [Display System (SerLCD SPI0)](#display-system-serlcd-spi0)
-- [System Optimization & Stability Behavior](#system-optimization--stability-behavior)
-- [Error Handling & Status Indication](#error-handling--status-indication)
+**Real-time CO₂ detection with bidirectional TWI communication, SPI display with 400ms stabilization delay, USART115200 interrupt-driven terminal with FSM command parsing, and DAC analog waveform output for patient breathing monitoring**
 
 ---
 
-## Executive Summary
+<div align="center">
 
-The **AK9723 Medical CO₂ Breathing Monitor** is a professional-grade embedded platform designed for **patient respiratory monitoring (capnography)**. Built around the **AVR128DB48 microcontroller** and **Asahi Kasei Microdevices AK9723 NDIR CO₂ sensor**, this system delivers real-time carbon dioxide concentration measurement with:
+[![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)](https://en.wikipedia.org/wiki/C_(programming_language))
+[![AVR](https://img.shields.io/badge/AVR-00979D?style=for-the-badge&logo=arduino&logoColor=white)](https://www.microchip.com/en-us/products/microcontrollers-and-microprocessors/8-bit-mcus/avr-mcus)
+[![I2C](https://img.shields.io/badge/I2C-0078D4?style=for-the-badge&logo=serial&logoColor=white)](https://en.wikipedia.org/wiki/I%C2%B2C)
+[![SPI](https://img.shields.io/badge/SPI-FF6B6B?style=for-the-badge&logo=serial&logoColor=white)](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface)
 
-- DAC-based analog CO₂ waveform output derived from sensor ADC voltage for respiratory visualization  
-- Interrupt-driven USART (115200 baud) terminal interface using ASCII commands  
-- FSM command parser for AK9723AJ sensor configuration and calibration register control  
-- Multi-page SerLCD (SPI0) interface with ~400 ms update delay
-- Optional display disable for improved analog stability  
-- Single GPIO LED used for boot indication and runtime error signaling via `get_AK9723_stats()`  
+**Version 1.0 | Last Updated: May 2026 | Author: Jin Yuan Chen**
 
-**Target Applications:** ICU bedside monitoring, ventilator integration, anesthesia gas analysis, and emergency respiratory monitoring.
+</div>
+
+---
+
+## 1. Executive Summary
+
+**System Definition:** An AVR128DB48-based real-time CO₂ monitoring system interfaced with the AK9723AJ NDIR CO₂ sensor via bidirectional TWI (I²C) communication protocol.
+
+**Medical Application Context:** Designed for patient breathing monitoring applications, including capnography-style respiratory assessment and end-tidal CO₂ (EtCO₂) waveform analysis.
+
+**Core Outputs:**
+- **CO₂ ppm display** – Real-time concentration shown as floating-point values on 20×4 SerLCD
+- **Analog waveform (DAC)** – Mimics medical CO₂ display waveform for patient breathing visualization
+- **Terminal control (USART FSM)** – ASCII command interface at 115200 baud with interrupt-driven Finite State Machine parsing
+
+**Key Interfaces Summary:**
+
+| Interface | Peripheral | Role |
+|-----------|------------|------|
+| **TWI (I²C)** | Bidirectional | AK9723AJ sensor communication, command register access, calibration |
+| **SPI0** | Master | SerLCD display control with 400ms stabilization delay |
+| **USART** | 115200 baud | Terminal command interface, interrupt-driven ASCII reception |
+| **DAC** | Analog output | CO₂ waveform visualization for medical monitoring |
+
+<insert executive_summary_diagram_here>
+
+*Figure 1: Executive summary – complete system block diagram showing AVR128DB48, AK9723AJ sensor, SerLCD display, DAC waveform output, and USART terminal interface*
+
+---
