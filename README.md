@@ -49,12 +49,6 @@ An **AK9723 Medical CO₂ Breathing Monitor** is a embedded platform designed fo
 
 **Medical Application:** Real-time CO₂-based respiratory monitoring system aimed at capnography-style waveform assessment for ICU, ventilator, anesthesia, and emergency use cases.
 
-<p align="center">
-  <img src="docs/images/system_block_diagram.png" alt="System Block Diagram" width="700"/>
-</p>
-
-*Figure 1: complete system block diagram showing AVR128DB48, AK9723AJ sensor, SerLCD display, DAC waveform output, and USART terminal interface*
-
 **Interfaces Summary:**
 
 | Interface | Peripheral | Role |
@@ -63,5 +57,13 @@ An **AK9723 Medical CO₂ Breathing Monitor** is a embedded platform designed fo
 | **SPI0** | Master | SerLCD display control with 400ms stabilization delay |
 | **USART** | 115200 baud | Terminal command interface, interrupt-driven ASCII reception |
 | **DAC** | Analog output | CO₂ waveform visualization for medical monitoring |
+
+
+<p align="center">
+  <img src="docs/images/system_block_diagram.png" alt="System Block Diagram" width="700"/>
+</p>
+
+*Figure 1: complete system block diagram showing AVR128DB48, AK9723AJ sensor, SerLCD display, DAC waveform output, and USART terminal interface*
+
 
 ---
