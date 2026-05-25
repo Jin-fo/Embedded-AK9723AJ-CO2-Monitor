@@ -53,7 +53,7 @@ The system provides DAC-based analog waveform output, SerLCD visualization via S
 
 ## Key Features
 <p align="center">
-  <img src="docs/images/Cammand_Parse_FSM" alt="Command_Parse_FSM" style="max-width:100%; height:auto;"/>
+  <img src="docs/images/Command_Parse_FSM.png" alt="Command_Parse_FSM" style="max-width:100%; height:auto;"/>
 </p>
 <p align="center">
 - Real-time CO₂ concentration computation from NDIR sensor input
