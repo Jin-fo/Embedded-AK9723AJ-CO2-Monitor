@@ -52,12 +52,14 @@ The system provides DAC-based analog waveform output, SerLCD visualization via S
 ---
 
 ## Key Features
+- Real-time CO₂ concentration computation from NDIR sensor input
+- Dual-domain output: digital display + analog waveform generation
+
 <p align="center">
   <img src="docs/images/Command_Parse_FSM.png" alt="Command_Parse_FSM" style="max-width:100%; height:auto;"/>
 </p>
 <p align="center">
-- Real-time CO₂ concentration computation from NDIR sensor input
-- Dual-domain output: digital display + analog waveform generation
+  
 - FSM-based UART terminal interface (115200 baud, interrupt-driven)
 - Multi-protocol embedded integration (I²C, SPI, UART, DAC)
 - Runtime calibration and sensor configuration via terminal commands
