@@ -1,4 +1,4 @@
-# Embedded AK9723AJ CO₂ Monitoring System
+# Embedded AK9723AJ CO₂ Monitor
 
 **Embedded real-time CO₂ monitoring system for respiratory waveform analysis using AVR128DB48 MCU and AK9723AJ NDIR sensor.**
 
