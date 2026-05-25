@@ -59,11 +59,23 @@ The system provides DAC-based analog waveform output, SerLCD visualization via S
   <img src="docs/images/Command_Parse_FSM.png" alt="Command_Parse_FSM" style="max-width:100%; height:auto;"/>
 </p>
 <p align="center">
+<p align="center">
+  <em>Figure 2: Command Parse FSM diagram, logic flow to interfacing terminal command characters to AVR microcontroller via USART.</em>
+</p>
+
   
 - FSM-based UART terminal interface (115200 baud, interrupt-driven)
 - Multi-protocol embedded integration (I²C, SPI, UART, DAC)
 - Runtime calibration and sensor configuration via terminal commands
 - GPIO-based status indication (boot state and fault signaling)
+
+<p align="center">
+  <img src="docs/images/ak9723aj_to_SerLCD.png" alt="ak9723aj_to_SerLCD" style="max-width:100%; height:auto;"/>
+</p>
+<p align="center">
+<p align="center">
+  <em>Figure 3: Voltage measurement and hexdecimal represent of CO₂ concentration read from the AK9723AJ displayed on the SerLCD</em>
+</p>
 
 ## Communication Interfaces
 
