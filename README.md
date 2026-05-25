@@ -100,5 +100,5 @@ The system provides DAC-based analog waveform output, SerLCD visualization via S
 </p>
 <p align="center">
 <p align="center">
-  <em>Figure 3: Voltage measurement and hexdecimal (IR1) represent of high CO₂ concentration read from the AK9723AJ displayed on the SerLCD</em>
+  <em>Figure 3: Voltage measurement and hexdecimal (IR1) representation of high CO₂ concentration read from the AK9723AJ and displayed on the SerLCD</em>
 </p>
